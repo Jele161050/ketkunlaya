@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title lang="en">Jia | Soft Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Mitr:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito+Rounded:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito+Rounded:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --bg: #1c1a1a;
+            --card: rgba(233, 220, 207, 0.1);
+            --card-strong: rgba(233, 220, 207, 0.16);
+            --text: #f3e9e1;
+            --muted: #cdbfb5;
+            --rose: #ebcfcf;
+            --rose-deep: #e0b7c2;
+            --peach: #e9dccf;
+            --cream: #f7eaa3;
+            --mint: #c7ccba;
+            --sky: #d9c8d5;
+            --shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
+            --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.22);
+            --radius-xl: 32px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: 'LINE Seed Sans TH', 'Mitr', 'M PLUS Rounded 1c', 'Nunito Rounded', 'Noto Sans JP', sans-serif;
+            font-weight: 500;
+            background:
+                radial-gradient(circle at top left, rgba(247, 234, 163, 0.18), transparent 24%),
+                radial-gradient(circle at top right, rgba(235, 207, 207, 0.18), transparent 26%),
+                radial-gradient(circle at 15% 78%, rgba(201, 200, 213, 0.14), transparent 22%),
+                radial-gradient(circle at 85% 82%, rgba(199, 204, 186, 0.12), transparent 20%),
+                linear-gradient(180deg, #1c1a1a 0%, #232020 56%, #201d1e 100%);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .section-title, .pill, .action-btn, .queue-btn, strong {
+            font-weight: 600;
+        }
+
+        h1, h2, h3, h4 {
+            letter-spacing: -0.02em;
+        }
+
+        :lang(en) {
+            font-family: 'Playfair Display', serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(rgba(247, 234, 163, 0.14) 1px, transparent 1px),
+                radial-gradient(rgba(235, 207, 207, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px, 44px 44px;
+            background-position: 0 0, 14px 18px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 10%, rgba(247, 234, 163, 0.14), transparent 18%),
+                radial-gradient(circle at 62% 16%, rgba(235, 207, 207, 0.08), transparent 22%),
+                radial-gradient(circle at 20% 20%, rgba(233, 220, 207, 0.08), transparent 20%);
+            z-index: 0;
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 18px 14px 92px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            background:
+                linear-gradient(135deg, rgba(233, 220, 207, 0.12), rgba(235, 207, 207, 0.08)),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(247, 234, 163, 0.05));
+            border: 1px solid rgba(247, 234, 163, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-banner {
+            min-height: 190px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(247, 234, 163, 0.34) 0 10px, transparent 11px),
+                radial-gradient(circle at 82% 24%, rgba(233, 220, 207, 0.22) 0 8px, transparent 9px),
+                linear-gradient(135deg, rgba(28, 26, 26, 0.96), rgba(40, 35, 39, 0.95) 46%, rgba(37, 34, 33, 0.96));
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            inset: auto -28px -42px auto;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(247, 234, 163, 0.28), rgba(247,234,163,0) 68%);
+            filter: blur(16px);
+            transform: rotate(-12deg);
+        }
+
+        .hero-sticker {
+            position: absolute;
+            z-index: 0;
+            border-radius: 999px;
+            opacity: 0.85;
+            filter: drop-shadow(0 8px 16px rgba(216, 156, 180, 0.16));
+            animation: floaty 6s ease-in-out infinite;
+        }
+
+        .hero-sticker.one { top: 18px; left: 16px; width: 18px; height: 18px; background: #f7eaa3; }
+        .hero-sticker.two { top: 64px; right: 24px; width: 12px; height: 12px; background: #e9dccf; animation-delay: 1.2s; }
+        .hero-sticker.three { bottom: 34px; left: 42%; width: 14px; height: 14px; background: #ebcfcf; animation-delay: 2s; }
+        .hero-sticker.four { bottom: 26px; right: 36px; width: 16px; height: 16px; background: #d9c8d5; animation-delay: 2.6s; }
+
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            50% { transform: translateY(-8px) translateX(4px) rotate(8deg); }
+        }
+
+        .soft-card {
+            background: linear-gradient(180deg, rgba(233, 220, 207, 0.12), rgba(233, 220, 207, 0.08));
+            border: 1px solid rgba(247, 234, 163, 0.12);
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+        }
+
+        .soft-card-strong {
+            background: linear-gradient(180deg, rgba(233, 220, 207, 0.18), rgba(235, 207, 207, 0.12));
+        }
+
+        .avatar-wrap {
+            width: 118px;
+            height: 118px;
+            margin-top: -58px;
+            border-radius: 999px;
+            border: 6px solid rgba(247, 234, 163, 0.18);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(247, 234, 163, 0.12), rgba(235, 207, 207, 0.16));
+            position: relative;
+        }
+
+        .avatar-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(233, 220, 207, 0.12);
+            border: 1px solid rgba(247, 234, 163, 0.16);
+            color: #e7ddd5;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+        }
+
+        .pill i { color: var(--rose-deep); }
+
+        .section-title {
+            font-size: 14px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cream);
+            font-weight: 600;
+        }
+
+        .grid-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .action-btn {
+            border: 0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 62px;
+            padding: 16px 14px;
+            border-radius: 22px;
+            color: #302c29;
+            font-weight: 600;
+            background: linear-gradient(180deg, rgba(247, 234, 163, 0.95), rgba(233, 220, 207, 0.9));
+            border: 1px solid rgba(247, 234, 163, 0.26);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+            border-color: rgba(247, 234, 163, 0.44);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #f7eaa3, #ebcfcf 50%, #d9c8d5);
+            color: #2f2a28;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .mini-card {
+            padding: 18px;
+            border-radius: 24px;
+        }
+
+        .mini-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .mini-list .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: rgba(233, 220, 207, 0.1);
+            border: 1px solid rgba(247, 234, 163, 0.12);
+            text-align: center;
+        }
+
+        #profileNameLabel {
+            flex: 1;
+            text-align: center;
+        }
+
+        #profileNameValue:empty {
+            display: none;
+        }
+
+        .music-shell {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255, 242, 246, 0.95));
+        }
+
+        .player-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(247, 234, 163, 0.14);
+            overflow: hidden;
+        }
+
+        .player-bar span {
+            display: block;
+            width: 48%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #f7eaa3, #ebcfcf, #d9c8d5, #c7ccba);
+        }
+
+        .notice-card {
+            background: linear-gradient(135deg, rgba(233, 220, 207, 0.12), rgba(199, 204, 186, 0.1));
+            border-style: dashed;
+        }
+
+        .queue-shell {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(233, 220, 207, 0.14), rgba(235, 207, 207, 0.1)),
+                linear-gradient(135deg, rgba(247, 234, 163, 0.1), rgba(201, 200, 213, 0.08));
+        }
+
+        .queue-shell::before,
+        .queue-shell::after {
+            content: '';
+            position: absolute;
+            border-radius: 999px;
+            pointer-events: none;
+            filter: blur(6px);
+        }
+
+        .queue-shell::before {
+            width: 120px;
+            height: 120px;
+            right: -28px;
+            top: -28px;
+            background: rgba(247, 234, 163, 0.18);
+        }
+
+        .queue-shell::after {
+            width: 140px;
+            height: 140px;
+            left: -38px;
+            bottom: -44px;
+            background: rgba(235, 207, 207, 0.14);
+        }
+
+        .queue-shell > * { position: relative; z-index: 1; }
+
+        .queue-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .queue-badges {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .queue-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(233, 220, 207, 0.1);
+            border: 1px solid rgba(247, 234, 163, 0.14);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .queue-badge i { color: var(--rose-deep); }
+
+        .queue-admin-toggle {
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .queue-toolbar {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .queue-toolbar-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .queue-controls {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .field-group label {
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-left: 2px;
+        }
+
+        .queue-field,
+        .queue-select,
+        .queue-input,
+        .queue-textarea {
+            width: 100%;
+            border-radius: 22px;
+            border: 1px solid rgba(247, 234, 163, 0.16);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(233, 220, 207, 0.86));
+            color: #2f2a28;
+            padding: 14px 16px;
+            font: inherit;
+            font-weight: 500;
+            outline: none;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.72),
+                0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .queue-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            min-height: 56px;
+            padding-right: 48px;
+            background-image:
+                linear-gradient(45deg, transparent 50%, #6d5a56 50%),
+                linear-gradient(135deg, #6d5a56 50%, transparent 50%),
+                linear-gradient(to right, rgba(247, 234, 163, 0.18), rgba(247, 234, 163, 0.18));
+            background-position:
+                calc(100% - 22px) calc(50% - 2px),
+                calc(100% - 16px) calc(50% - 2px),
+                calc(100% - 3.1rem) 50%;
+            background-size: 6px 6px, 6px 6px, 1px 1.35rem;
+            background-repeat: no-repeat;
+        }
+
+        .queue-field[type="date"] {
+            min-height: 56px;
+            color-scheme: light;
+            accent-color: var(--cream);
+            letter-spacing: 0.01em;
+            font-weight: 600;
+            padding-right: 44px;
+            background-image:
+                linear-gradient(135deg, rgba(247, 234, 163, 0.12), rgba(235, 207, 207, 0.12));
+        }
+
+        .queue-field[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0.7;
+            cursor: pointer;
+            filter: saturate(0.8) hue-rotate(340deg);
+        }
+
+        .queue-field[type="date"]::-webkit-datetime-edit,
+        .queue-field[type="date"]::-webkit-datetime-edit-fields-wrapper,
+        .queue-field[type="date"]::-webkit-datetime-edit-text,
+        .queue-field[type="date"]::-webkit-datetime-edit-month-field,
+        .queue-field[type="date"]::-webkit-datetime-edit-day-field,
+        .queue-field[type="date"]::-webkit-datetime-edit-year-field {
+            color: #2f2a28;
+            font-weight: 600;
+        }
+
+        .queue-calendar-display {
+            cursor: pointer;
+        }
+
+        .queue-calendar-display.flatpickr-input[readonly] {
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(233, 220, 207, 0.82));
+        }
+
+        .flatpickr-calendar {
+            width: min(320px, calc(100vw - 28px));
+            max-width: 320px;
+            border-radius: 24px;
+            border: 1px solid rgba(247, 234, 163, 0.16);
+            box-shadow: 0 24px 52px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            font-family: inherit;
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233, 220, 207, 0.94));
+            transform: none !important;
+        }
+
+        .flatpickr-calendar.open {
+            transform: none !important;
+        }
+
+        .flatpickr-innerContainer,
+        .flatpickr-rContainer,
+        .flatpickr-days,
+        .dayContainer {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: none !important;
+        }
+
+        .flatpickr-days {
+            display: block;
+        }
+
+        .dayContainer {
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        .flatpickr-months {
+            padding: 10px 8px 4px;
+            background: linear-gradient(135deg, rgba(247, 234, 163, 0.72), rgba(235, 207, 207, 0.6));
+        }
+
+        .flatpickr-current-month,
+        .flatpickr-current-month .flatpickr-monthDropdown-months,
+        .flatpickr-current-month input.cur-year {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .flatpickr-weekdays {
+            padding: 8px 10px 0;
+            background: rgba(255,255,255,0.76);
+        }
+
+        span.flatpickr-weekday {
+            color: #7b6b63;
+            font-weight: 600;
+        }
+
+        .flatpickr-days {
+            padding: 6px 10px 10px;
+            background: rgba(255,255,255,0.76);
+        }
+
+        .flatpickr-day {
+            border-radius: 999px;
+            border: 1px solid transparent;
+            color: #2f2a28;
+            font-weight: 600;
+        }
+
+        .flatpickr-day:hover,
+        .flatpickr-day.prevMonthDay:hover,
+        .flatpickr-day.nextMonthDay:hover {
+            background: rgba(247, 234, 163, 0.32);
+            border-color: rgba(247, 234, 163, 0.34);
+        }
+
+        .flatpickr-day.today {
+            border-color: rgba(247, 234, 163, 0.56);
+            color: #7b6b63;
+        }
+
+        .flatpickr-day.selected,
+        .flatpickr-day.startRange,
+        .flatpickr-day.endRange,
+        .flatpickr-day.selected.inRange,
+        .flatpickr-day.selected:focus,
+        .flatpickr-day.selected:hover {
+            background: linear-gradient(135deg, #f7eaa3, #ebcfcf);
+            border-color: rgba(247, 234, 163, 0.5);
+            color: #2f2a28;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+        }
+
+        .flatpickr-day.inRange {
+            background: rgba(233, 220, 207, 0.22);
+            box-shadow: none;
+            border-color: rgba(233, 220, 207, 0.22);
+        }
+
+        .flatpickr-day.disabled,
+        .flatpickr-day.disabled:hover {
+            color: rgba(243, 233, 225, 0.34);
+        }
+
+        .flatpickr-prev-month,
+        .flatpickr-next-month {
+            fill: #7b6b63;
+        }
+
+        .flatpickr-prev-month:hover svg,
+        .flatpickr-next-month:hover svg {
+            fill: #4d403b;
+        }
+
+        .queue-field::placeholder,
+        .queue-select,
+        .queue-input::placeholder {
+            color: rgba(47, 42, 40, 0.6);
+        }
+
+        .queue-select option {
+            font-weight: 500;
+        }
+
+        .queue-status-picker {
+            position: relative;
+        }
+
+        .queue-status-button {
+            width: 100%;
+            border: 1px solid rgba(223, 193, 205, 0.72);
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(233, 220, 207, 0.9));
+            color: #2f2a28;
+            padding: 14px 16px;
+            min-height: 56px;
+            font: inherit;
+            font-weight: 600;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 8px 18px rgba(0, 0, 0, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .queue-status-button::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #7b6b63;
+            border-bottom: 2px solid #7b6b63;
+            transform: rotate(45deg) translateY(-2px);
+            flex: 0 0 auto;
+        }
+
+        .queue-status-button.is-open::after {
+            transform: rotate(-135deg) translateY(-1px);
+        }
+
+        .queue-status-menu {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 8px);
+            z-index: 30;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(247, 234, 163, 0.18);
+            border-radius: 20px;
+            box-shadow: 0 20px 34px rgba(0, 0, 0, 0.18);
+            padding: 8px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .queue-status-menu[hidden] {
+            display: none;
+        }
+
+        .queue-status-option {
+            border: 0;
+            border-radius: 16px;
+            padding: 12px 14px;
+            background: transparent;
+            color: #2f2a28;
+            font: inherit;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .queue-status-option:hover,
+        .queue-status-option[aria-selected="true"] {
+            background: linear-gradient(135deg, rgba(247, 234, 163, 0.82), rgba(235, 207, 207, 0.72));
+            color: #2f2a28;
+        }
+
+        .queue-textarea { min-height: 96px; resize: vertical; }
+
+        .queue-field:focus,
+        .queue-select:focus,
+        .queue-input:focus,
+        .queue-textarea:focus {
+            border-color: rgba(247, 234, 163, 0.85);
+            box-shadow: 0 0 0 4px rgba(247, 234, 163, 0.16);
+        }
+
+        .queue-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .queue-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 999px;
+            min-height: 46px;
+            padding: 12px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #2f2a28;
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(233,220,207,0.92));
+            border: 1px solid rgba(247, 234, 163, 0.18);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .queue-btn.primary {
+            background: linear-gradient(135deg, #f7eaa3, #ebcfcf 48%, #d9c8d5);
+            color: #2f2a28;
+        }
+
+        .queue-btn.ghost { background: rgba(233, 220, 207, 0.16); }
+
+        .queue-form {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 24px;
+            background: rgba(233, 220, 207, 0.08);
+            border: 1px solid rgba(247, 234, 163, 0.12);
+        }
+
+        .queue-form-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .queue-form .field-group { display: grid; gap: 8px; }
+        .queue-form .field-group.full { grid-column: 1 / -1; }
+
+        .queue-note {
+            font-size: 12px;
+            color: #d9cdc3;
+            line-height: 1.6;
+        }
+
+        .queue-table-wrap {
+            margin-top: 16px;
+            overflow: auto;
+            border-radius: 24px;
+            border: 1px solid rgba(247, 234, 163, 0.12);
+            background: rgba(233, 220, 207, 0.06);
+            max-width: 100%;
+        }
+
+        .queue-table {
+            width: max-content;
+            min-width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        .queue-table th,
+        .queue-table td {
+            padding: 8px 6px;
+            border-bottom: 1px solid rgba(223, 193, 205, 0.3);
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .queue-table th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: rgba(28, 26, 26, 0.96);
+            color: var(--cream);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .queue-table tbody tr:hover { background: rgba(247, 234, 163, 0.06); }
+
+        .queue-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: rgba(233, 220, 207, 0.14);
+            border: 1px solid rgba(247, 234, 163, 0.14);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .queue-status[data-status="รอคิว"] { color: #f7eaa3; }
+        .queue-status[data-status="กำลังทำ"] { color: #c7ccba; }
+        .queue-status[data-status="รอตรวจ"] { color: #d9c8d5; }
+        .queue-status[data-status="เสร็จแล้ว"] { color: #ebcfcf; }
+
+        .queue-row-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .queue-row-actions .queue-btn {
+            min-height: 34px;
+            padding: 8px 10px;
+            font-size: 11px;
+        }
+
+        .queue-table th,
+        .queue-table td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .queue-table th:nth-child(1),
+        .queue-table td:nth-child(1) { width: 78px; }
+
+        .queue-table th:nth-child(2),
+        .queue-table td:nth-child(2) { width: 88px; }
+
+        .queue-table th:nth-child(3),
+        .queue-table td:nth-child(3) { width: 150px; }
+
+        .queue-table th:nth-child(4),
+        .queue-table td:nth-child(4) { width: 78px; }
+
+        .queue-table th:nth-child(5),
+        .queue-table td:nth-child(5) { width: 62px; }
+
+        .queue-table th:nth-child(6),
+        .queue-table td:nth-child(6) { width: 82px; }
+
+        .queue-table th:nth-child(7),
+        .queue-table td:nth-child(7) { width: 96px; }
+
+        .queue-table th:nth-child(8),
+        .queue-table td:nth-child(8) { width: 94px; }
+
+        .queue-table:not(.is-admin) th:nth-child(8),
+        .queue-table:not(.is-admin) td:nth-child(8) {
+            display: none;
+        }
+
+        .queue-empty {
+            padding: 20px;
+            text-align: center;
+            color: #ccbfb7;
+        }
+
+        .queue-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            display: grid;
+            place-items: center;
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.58);
+            backdrop-filter: blur(6px);
+        }
+
+        .queue-modal[hidden] { display: none; }
+
+        .queue-modal-card {
+            width: min(460px, 100%);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(233, 220, 207, 0.18), rgba(28, 26, 26, 0.96));
+            border: 1px solid rgba(247, 234, 163, 0.14);
+            box-shadow: 0 24px 56px rgba(0, 0, 0, 0.34);
+            padding: 20px;
+        }
+
+        .queue-modal-card .queue-form {
+            margin-top: 14px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .queue-modal-card .queue-form-grid { grid-template-columns: 1fr; }
+
+        .password-field-wrap {
+            position: relative;
+        }
+
+        .password-visibility-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(247, 234, 163, 0.14);
+            color: var(--cream);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        .password-field-wrap .queue-field {
+            padding-right: 56px;
+        }
+
+        .queue-fab {
+            position: fixed;
+            right: 18px;
+            bottom: 104px;
+            z-index: 25;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 0;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #f7eaa3, #ebcfcf 52%, #d9c8d5);
+            color: #2f2a28;
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(247, 234, 163, 0.1);
+            cursor: pointer;
+        }
+
+        .queue-fab[hidden] { display: none; }
+
+        .queue-admin-on {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .queue-admin-on::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #f7eaa3;
+            box-shadow: 0 0 0 5px rgba(247, 234, 163, 0.14);
+        }
+
+        @media (max-width: 720px) {
+            .queue-toolbar-top,
+            .queue-controls,
+            .queue-form-grid { grid-template-columns: 1fr; }
+
+            .queue-actions { justify-content: stretch; }
+            .queue-actions .queue-btn { flex: 1 1 100%; }
+            .queue-fab { right: 18px; bottom: 104px; }
+
+            .queue-table-wrap {
+                overflow-x: auto;
+                overflow-y: hidden;
+                border-radius: 22px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .queue-row-actions {
+                justify-content: flex-start;
+            }
+
+            .queue-row-actions .queue-btn {
+                flex: 0 0 auto;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .queue-fab {
+                right: 18px;
+                bottom: 104px;
+            }
+        }
+
+        .desktop-only { display: none; }
+
+        @media (min-width: 768px) {
+            .page-shell { padding: 28px 24px 40px; }
+            .hero-banner { min-height: 250px; padding: 28px; }
+            .avatar-wrap { width: 148px; height: 148px; margin-top: -74px; }
+            .grid-actions { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .card-grid.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .desktop-only { display: block; }
+        }
+
+        .hero h1,
+        .queue-header h3,
+        .queue-modal-card h3,
+        .notice-card strong,
+        .mini-list strong {
+            color: #f3e9e1;
+        }
+
+        .hero p,
+        .queue-header p,
+        .notice-card p,
+        .queue-modal-card p,
+        .mini-card p {
+            color: #d9cdc3;
+        }
+
+        .hero .text-[#745968],
+        .queue-header .text-[#745968],
+        .queue-modal-card .text-[#745968] {
+            color: #f3e9e1 !important;
+        }
+
+        .hero .text-[#9e8491],
+        .queue-header .text-[#9e8491],
+        .queue-modal-card .text-[#9e8491],
+        .mini-card .text-[#9e8491] {
+            color: #d9cdc3 !important;
+        }
+
+        .hero .text-[#745968] {
+            text-shadow: 0 0 20px rgba(247, 234, 163, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell" id="top">
+        <main class="space-y-5 md:space-y-6">
+            <section class="hero">
+                <div class="hero-banner relative">
+                    <span class="hero-sticker one"></span>
+                    <span class="hero-sticker two"></span>
+                    <span class="hero-sticker three"></span>
+                    <span class="hero-sticker four"></span>
+                    <div class="flex items-start justify-between gap-4 relative z-10">
+                        <div>
+                            <p class="section-title mb-2" id="profileShopTag">♡𓂂 <span lang="en">Jia</span> 리 치아</p>
+                            <h1 class="text-3xl md:text-5xl font-semibold tracking-tight text-[#745968] leading-tight" id="profileShopName" lang="en">Luna</h1>
+                            <p class="mt-2 text-sm md:text-base text-[#9e8491] max-w-md" id="profileShopDescription" lang="en">Check the work queue at Jia's shop.</p>
+                        </div>
+                        <div class="hidden md:flex items-center gap-2">
+                            <span class="pill"><i class="fa-regular fa-star"></i> dreamy</span>
+                            <span class="pill"><i class="fa-regular fa-heart"></i> cozy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-4 md:px-6 pb-5 md:pb-6">
+                    <div class="avatar-wrap">
+                        <img src="https://img2.pic.in.th/128831186bab603317dfca657b981d23.png">
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="pill" id="profileShopBadge"><i class="fa-solid fa-sparkles"></i>  ˖⁺‧ เช็คคิวร้านเจีย</span>
+                    </div>
+
+                    <div class="mt-5">
+                        <p class="section-title" id="profileSectionTitle" lang="en">Woven with intention.</p>
+                        <div class="mini-list mt-4 max-w-md">
+                            <div class="row"><span id="profileNameLabel" lang="en">Name</span><strong id="profileNameValue" lang="en">Jia</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="soft-card mini-card queue-shell" id="queue">
+                <div class="queue-header">
+                    <div>
+                        <p class="section-title" id="queueSectionTitle">고객 대기열 관리 일정</p>
+                        <h3 class="mt-3 text-2xl md:text-3xl font-semibold text-[#745968] tracking-tight">ตารางจัดการคิวงานลูกค้า</h3>
+                        <p class="mt-2 text-sm md:text-base text-[#9e8491] max-w-2xl" id="queueHeaderDescription">บันทึก แก้ไขคิวงานและอัปเดตงานได้จากเว็บไซต์นี้จะถูกปลดล็อคเฉพาะไอ้เจียเท่านั้น</p>
+                    </div>
+                    <div class="queue-badges">
+                        <span class="queue-badge" id="queuePublicBadge"><i class="fa-solid fa-circle"></i> ลูกค้าเช็คคิวได้กงนิ้</span>
+                        <button class="queue-badge queue-admin-toggle" type="button" id="queueAdminToggle"><i class="fa-solid fa-lock"></i><span id="queueAdminToggleLabel">แก้ไขคิวสำหรับเจีย</span></button>
+                    </div>
+                </div>
+
+                <div class="queue-toolbar">
+                    <div class="queue-toolbar-top">
+                        <div class="queue-controls">
+                            <input class="queue-input" id="queueSearch" type="search" placeholder=" ค้นหาคิว ด้วยชื่อที่ลงทะเบียนไว้">
+                        </div>
+                    </div>
+
+                    <p class="queue-note" id="queueNoteText">รหัสแอดมินสำหรับโหมดแก้ไขคือ Luna. ข้อมูลตัวอย่างจะถูกเก็บในเครื่องนี้เท่านั้นถ้ายังไม่ได้เชื่อมต่อหลังบ้าน</p>
+
+                    <form class="queue-form" id="queueForm" hidden>
+                        <input type="hidden" id="queueId">
+                        <div class="queue-form-grid">
+                            <div class="field-group">
+                                <label for="queueCreatedAt" lang="en">Q</label>
+                                <input class="queue-field" id="queueCreatedAt" type="number" inputmode="numeric" min="0" step="1" placeholder="ใส่ตัวเลข" required>
+                            </div>
+                            <div class="field-group">
+                                <label for="queueTitle" lang="en">date</label>
+                                <input class="queue-field" id="queueTitle" type="text" inputmode="none" placeholder="เลือกวันที่" required>
+                            </div>
+                            <div class="field-group full">
+                                <label for="queueDetails" lang="en">Customer Name</label>
+                                <textarea class="queue-textarea" id="queueDetails" placeholder="รายละเอียดสั้น ๆ ของงาน" required></textarea>
+                            </div>
+                            <div class="field-group">
+                                <label for="queueDueAt" lang="en">Amount</label>
+                                <input class="queue-field" id="queueDueAt" type="number" inputmode="numeric" min="0" step="1" placeholder="ใส่ตัวเลข" required>
+                            </div>
+                            <div class="field-group">
+                                <label for="queuePrice">ราคา</label>
+                                <input class="queue-field" id="queuePrice" type="number" min="0" step="1" placeholder="99" required>
+                            </div>
+                            <div class="field-group queue-status-picker">
+                                <label for="queueStatusButton" lang="en">status</label>
+                                <input type="hidden" id="queueStatus" value="รอคิว">
+                                <button class="queue-status-button" type="button" id="queueStatusButton" aria-haspopup="listbox" aria-expanded="false">
+                                    <span id="queueStatusLabel">รอคิว</span>
+                                </button>
+                                <div class="queue-status-menu" id="queueStatusMenu" role="listbox" hidden>
+                                    <button class="queue-status-option" type="button" data-status-option="รอคิว">รอคิว</button>
+                                    <button class="queue-status-option" type="button" data-status-option="กำลังทำ">กำลังทำ</button>
+                                    <button class="queue-status-option" type="button" data-status-option="รอตรวจ">รอตรวจ</button>
+                                    <button class="queue-status-option" type="button" data-status-option="เสร็จแล้ว">เสร็จแล้ว</button>
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <label for="queueNote">หมายเหตุ</label>
+                                <input class="queue-field" id="queueNote" type="text" placeholder="ข้อความเพิ่มเติม">
+                            </div>
+                        </div>
+                        <div class="queue-actions">
+                            <button class="queue-btn primary" type="submit"><i class="fa-solid fa-floppy-disk"></i><span>บันทึกคิวงาน</span></button>
+                            <button class="queue-btn" type="button" id="queueResetBtn"><i class="fa-solid fa-rotate-left"></i><span>ล้างฟอร์ม</span></button>
+                        </div>
+                    </form>
+
+                    <div class="queue-table-wrap">
+                        <table class="queue-table" aria-label="Queue planner table">
+                            <thead>
+                                <tr>
+                                    <th lang="en">Q</th>
+                                    <th lang="en">date</th>
+                                    <th lang="en">Cusomer Name</th>
+                                    <th lang="en">Amount</th>
+                                    <th lang="en">Price</th>
+                                    <th lang="en">status</th>
+                                    <th>หมายเหตุ</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="queueTableBody"></tbody>
+                        </table>
+                        <div class="queue-empty" id="queueEmpty" hidden>ยังไม่มีคิวงานในตอนนี้</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-grid two-up" id="gallery">
+                <article class="soft-card mini-card">
+                    <p class="section-title" lang="en">Quick Links</p>
+                    <div class="mt-4 grid grid-cols-2 gap-3">
+                        <a class="action-btn" href="https://www.instagram.com/luna_thread_109?igsh=c3c1cXBra3Y2NHJv&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i><span lang="en">Instagram</span></a>
+                        <a class="action-btn" href="https://lin.ee/yYExVAa" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line"></i><span lang="en">LINE</span></a>
+                    </div>
+                </article>
+
+            </section>
+
+            <section class="soft-card notice-card mini-card" id="contact">
+                <p class="section-title" lang="en">Notice</p>
+                <div class="mt-4 grid gap-3">
+                    <div class="row">
+                        <span lang="en">lf you have any questions, feel free to DM us through any channel.</span>
+                        <strong></strong>
+                    </div>
+                    <div class="row">
+                        <span lang="en">Business hours: 8:00 AM - 9:00 PM.</span>
+                        <strong></strong>
+                    </div>
+                    <div class="row">
+                        <span></span>
+                        <strong></strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="soft-card mini-card desktop-only">
+                <p class="section-title" lang="en">Extra Section</p>
+                <p class="mt-4 text-sm text-[#9e8491] leading-7" lang="en">A quiet extra panel for longer descriptions, featured posts, or additional profile stories. The card stays airy, soft, and minimal so the layout still feels premium and uncluttered.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <button class="queue-fab" id="queueFab" type="button" aria-label="Add queue job" hidden>
+        <i class="fa-solid fa-plus text-lg"></i>
+    </button>
+
+    <div class="queue-modal" id="queueUnlockModal" hidden>
+        <div class="queue-modal-card">
+            <p class="section-title" lang="en">Admin Unlock</p>
+            <h3 class="mt-2 text-2xl font-semibold text-[#745968]">ปลดล็อคโหมดแก้ไข</h3>
+            <p class="mt-2 text-sm text-[#9e8491]">ใส่รหัสแอดมินเพื่อเพิ่ม แก้ไข และลบคิวงาน</p>
+            <form class="queue-form" id="queueUnlockForm">
+                <div class="field-group full">
+                    <label for="queueAdminPassword">รหัสผ่าน</label>
+                    <div class="password-field-wrap">
+                        <input class="queue-field" id="queueAdminPassword" type="password" placeholder="กรอกเพื่อล็อคอิน" required>
+                        <button class="password-visibility-toggle" type="button" id="queueAdminPasswordToggle" aria-label="แสดงรหัสผ่าน" aria-pressed="false">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="queue-actions">
+                    <button class="queue-btn primary" type="submit"><i class="fa-solid fa-unlock"></i><span>ปลดล็อค</span></button>
+                    <button class="queue-btn" type="button" id="queueUnlockCancel"><i class="fa-solid fa-xmark"></i><span>ยกเลิก</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="queue-modal" id="queueDeleteModal" hidden>
+        <div class="queue-modal-card">
+            <p class="section-title" lang="en">Delete Item</p>
+            <h3 class="mt-2 text-2xl font-semibold text-[#745968]">ลบคิวงานนี้ใช่ไหม</h3>
+            <p class="mt-2 text-sm text-[#9e8491]" id="queueDeleteMessage">รายการนี้จะถูกลบออกจากตารางทันที</p>
+            <div class="queue-actions mt-5">
+                <button class="queue-btn primary" type="button" id="queueDeleteConfirm"><i class="fa-solid fa-trash"></i><span>ลบเลย</span></button>
+                <button class="queue-btn" type="button" id="queueDeleteCancel"><i class="fa-solid fa-xmark"></i><span>ยกเลิก</span></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        window.FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDl-Ik44L74Gh988bgoIX-mkNfuH6fYFto",
+            authDomain: "chekq-29ec9.firebaseapp.com",
+            projectId: "chekq-29ec9",
+            storageBucket: "chekq-29ec9.firebasestorage.app",
+            messagingSenderId: "1078405311248",
+            appId: "1:1078405311248:web:e9d01a7a7cee1faa0c5395",
+            measurementId: "G-XNXH6QN7ZQ"
+        };
+    </script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+        import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+
+        const profileContent = {
+            documentTitle: 'Luna | thread_109',
+            shopTag: 'Moon•Butterflies•Flowers•Memories ',
+            shopName: 'Luna | thread_109',
+            description: "Check the work queue at Luna's shop.",
+            badge: '˖⁺‧ เช็คคิวร้านลูน่า ❀',
+            profileSectionTitle: 'Woven with intention.',
+            queueSectionTitle: 'ข้อมูลจุดเช็คคิวต่าง ๆ',
+            queueHeaderDescription: 'ลูกค้าสามารถเช็คคิวตรงนี้ได้เลยนะคะ ค้นหาชื่อหรือเลื่อนดูได้เลยค่า',
+            queuePublicBadge: 'ลูกค้าเช็คคิวได้ตรงนี้',
+            queueAdminToggleLabel: 'ปลดล็อคการแก้ไข',
+            queuePassword: 'Luna',
+            queueNoteText: 'รหัสแอดมินสำหรับโหมดแก้ไขคือ {password}. ข้อมูลตัวอย่างจะถูกเก็บในเครื่องนี้เท่านั้นถ้ายังไม่ได้เชื่อมต่อหลังบ้าน',
+            nameLabel: 'Where threads become memories.',
+            nameValue: ''
+        };
+
+        const queueAdminKey = 'pinkjulieland-queue-admin-unlocked';
+        const queuePassword = profileContent.queuePassword;
+        const queueCollectionName = 'queues_v2';
+        const firebaseConfig = window.FIREBASE_CONFIG || window.firebaseConfig || null;
+
+        const datePickerOptions = {
+            allowInput: false,
+            clickOpens: true,
+            dateFormat: 'Y-m-d',
+            altInput: true,
+            altInputClass: 'queue-field queue-calendar-display',
+            altFormat: 'm/d/Y',
+            ariaDateFormat: 'F j, Y',
+            disableMobile: true,
+            monthSelectorType: 'static',
+            onReady: (_, __, instance) => {
+                const yearInput = instance.calendarContainer.querySelector('input.cur-year');
+                if (yearInput) {
+                    yearInput.style.visibility = 'visible';
+                    yearInput.style.width = '4.5ch';
+                    yearInput.style.height = 'auto';
+                    yearInput.style.pointerEvents = 'auto';
+                    yearInput.tabIndex = 0;
+                }
+            },
+            onOpen: (_, __, instance) => {
+                const yearInput = instance.calendarContainer.querySelector('input.cur-year');
+                if (yearInput) {
+                    yearInput.style.visibility = 'visible';
+                    yearInput.style.width = '4.5ch';
+                    yearInput.style.height = 'auto';
+                    yearInput.style.pointerEvents = 'auto';
+                    yearInput.tabIndex = 0;
+                }
+            },
+            prevArrow: '<span class="flatpickr-arrow flatpickr-arrow-prev">‹</span>',
+            nextArrow: '<span class="flatpickr-arrow flatpickr-arrow-next">›</span>'
+        };
+
+        const queueForm = document.getElementById('queueForm');
+        const queueUnlockModal = document.getElementById('queueUnlockModal');
+        const queueUnlockForm = document.getElementById('queueUnlockForm');
+        const queueUnlockCancel = document.getElementById('queueUnlockCancel');
+        const queueAdminToggle = document.getElementById('queueAdminToggle');
+        const queueFab = document.getElementById('queueFab');
+        const queueResetBtn = document.getElementById('queueResetBtn');
+        const queueSearch = document.getElementById('queueSearch');
+        const queueTableBody = document.getElementById('queueTableBody');
+        const queueTable = queueTableBody.closest('.queue-table');
+        const queueEmpty = document.getElementById('queueEmpty');
+        const queueId = document.getElementById('queueId');
+        const queueCreatedAt = document.getElementById('queueCreatedAt');
+        const queueDueAt = document.getElementById('queueDueAt');
+        const queueTitle = document.getElementById('queueTitle');
+        const queuePrice = document.getElementById('queuePrice');
+        const queueDetails = document.getElementById('queueDetails');
+        const queueStatus = document.getElementById('queueStatus');
+        const queueStatusButton = document.getElementById('queueStatusButton');
+        const queueStatusLabel = document.getElementById('queueStatusLabel');
+        const queueStatusMenu = document.getElementById('queueStatusMenu');
+        const queueNote = document.getElementById('queueNote');
+        const queueAdminPassword = document.getElementById('queueAdminPassword');
+        const queueDeleteModal = document.getElementById('queueDeleteModal');
+        const queueDeleteMessage = document.getElementById('queueDeleteMessage');
+        const queueDeleteConfirm = document.getElementById('queueDeleteConfirm');
+        const queueDeleteCancel = document.getElementById('queueDeleteCancel');
+        const queueAdminPasswordToggle = document.getElementById('queueAdminPasswordToggle');
+        const profileShopTag = document.getElementById('profileShopTag');
+        const profileShopName = document.getElementById('profileShopName');
+        const profileShopDescription = document.getElementById('profileShopDescription');
+        const profileShopBadge = document.getElementById('profileShopBadge');
+        const profileSectionTitle = document.getElementById('profileSectionTitle');
+        const profileNameLabel = document.getElementById('profileNameLabel');
+        const profileNameValue = document.getElementById('profileNameValue');
+        const queueSectionTitle = document.getElementById('queueSectionTitle');
+        const queueHeaderDescription = document.getElementById('queueHeaderDescription');
+        const queuePublicBadge = document.getElementById('queuePublicBadge');
+        const queueAdminToggleLabel = document.getElementById('queueAdminToggleLabel');
+        const queueNoteText = document.getElementById('queueNoteText');
+
+        const titlePicker = window.flatpickr(queueTitle, datePickerOptions);
+
+        let app = null;
+        let db = null;
+        let queueUnsubscribe = null;
+        let queueItems = [];
+        let editingId = null;
+        let pendingDeleteId = null;
+
+        function isFirebaseConfigReady(config) {
+            return Boolean(config && config.apiKey && config.authDomain && config.projectId && config.appId);
+        }
+
+        function ensureFirestore() {
+            if (db) {
+                return db;
+            }
+
+            if (!isFirebaseConfigReady(firebaseConfig)) {
+                return null;
+            }
+
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            return db;
+        }
+
+        function normalizeQueueNumericValue(value) {
+            if (typeof value === 'number') {
+                return value;
+            }
+
+            const digits = String(value ?? '').replace(/\D/g, '');
+            return digits ? Number(digits) : value;
+        }
+
+        function normalizeAmountValue(value) {
+            const numericValue = normalizeQueueNumericValue(value);
+            return Number.isFinite(numericValue) ? numericValue : 0;
+        }
+
+        function normalizeQueueItem(item) {
+            return {
+                id: item.id,
+                createdAt: normalizeQueueNumericValue(item.createdAt),
+                dueAt: normalizeAmountValue(item.dueAt),
+                title: item.title ?? '',
+                price: normalizeAmountValue(item.price),
+                details: item.details ?? '',
+                status: item.status || 'รอคิว',
+                note: item.note ?? ''
+            };
+        }
+
+        function isAdminUnlocked() {
+            return sessionStorage.getItem(queueAdminKey) === 'true';
+        }
+
+        function renderProfileContent() {
+            document.title = profileContent.documentTitle;
+            profileShopTag.innerHTML = escapeHtml(profileContent.shopTag).replace('Jia', '<span lang="en">Jia</span>');
+            profileShopName.textContent = profileContent.shopName;
+            profileShopDescription.textContent = profileContent.description;
+            profileShopBadge.innerHTML = `<i class="fa-solid fa-sparkles"></i>  ${escapeHtml(profileContent.badge)}`;
+            profileSectionTitle.textContent = profileContent.profileSectionTitle;
+            profileNameLabel.textContent = profileContent.nameLabel;
+            profileNameValue.textContent = profileContent.nameValue;
+            queueSectionTitle.textContent = profileContent.queueSectionTitle;
+            queueHeaderDescription.textContent = profileContent.queueHeaderDescription;
+            queuePublicBadge.innerHTML = `<i class="fa-solid fa-circle"></i> ${escapeHtml(profileContent.queuePublicBadge)}`;
+            queueAdminToggleLabel.textContent = profileContent.queueAdminToggleLabel;
+            queueNoteText.textContent = profileContent.queueNoteText.replace('{password}', profileContent.queuePassword);
+        }
+
+        function formatQueueValue(value) {
+            if (value === '' || value === null || value === undefined) {
+                return '-';
+            }
+
+            return String(value);
+        }
+
+        function formatQueueDateValue(value) {
+            if (value === '' || value === null || value === undefined) {
+                return '-';
+            }
+
+            const digits = String(value).replace(/\D/g, '');
+            if (digits) {
+                if (digits.length === 8) {
+                    return `${digits.slice(6, 8)}/${digits.slice(4, 6)}`;
+                }
+
+                if (digits.length === 6) {
+                    return `${digits.slice(4, 6)}/${digits.slice(2, 4)}`;
+                }
+            }
+
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) {
+                return String(value);
+            }
+
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            return `${day}/${month}`;
+        }
+
+        function sortQueue(items) {
+            const sorted = [...items];
+
+            sorted.sort((first, second) => {
+                const dateA = Number(first.createdAt) || 0;
+                const dateB = Number(second.createdAt) || 0;
+
+                return dateA - dateB;
+            });
+
+            return sorted;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+
+        function updateQueueAdminUI() {
+            const adminEnabled = isAdminUnlocked();
+
+            queueAdminToggle.innerHTML = adminEnabled
+                ? '<i class="fa-solid fa-unlock"></i><span class="queue-admin-on">โหมดแก้ไขเปิดอยู่</span>'
+                : '<i class="fa-solid fa-lock"></i><span>แก้ไขคิวสำหรับ Luna เท่านั้น</span>';
+
+            queueTable.classList.toggle('is-admin', adminEnabled);
+            queueFab.hidden = !adminEnabled;
+            queueTableBody.querySelectorAll('[data-admin-only]').forEach((control) => {
+                control.hidden = !adminEnabled;
+            });
+
+            if (!adminEnabled) {
+                queueForm.hidden = true;
+                closeUnlockModal();
+            } else if (!editingId) {
+                queueForm.hidden = true;
+            }
+        }
+
+        function renderQueue() {
+            const term = queueSearch.value.trim().toLowerCase();
+            const filtered = queueItems.filter((item) => {
+                const haystack = [item.title, item.details, item.note, item.status].join(' ').toLowerCase();
+                return !term || haystack.includes(term);
+            });
+
+            const sorted = sortQueue(filtered);
+            queueTableBody.innerHTML = '';
+            queueEmpty.hidden = sorted.length > 0;
+
+            sorted.forEach((item) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td data-label="Q">${formatQueueValue(item.createdAt)}</td>
+                    <td data-label="date"><strong>${escapeHtml(formatQueueDateValue(item.title))}</strong></td>
+                    <td data-label=""COCTATC>${escapeHtml(item.details)}</td>
+                    <td data-label="Amount">${formatQueueValue(item.dueAt)}</td>
+                    <td data-label="Price">฿${Number(item.price || 0).toLocaleString('th-TH')}</td>
+                    <td data-label="status"><span class="queue-status" data-status="${escapeHtml(item.status)}">${escapeHtml(item.status)}</span></td>
+                    <td data-label="หมายเหตุ">${escapeHtml(item.note || '-')}</td>
+                    <td data-label="จัดการ"><div class="queue-row-actions" data-admin-only>
+                        <button class="queue-btn" type="button" data-action="edit" data-id="${item.id}"><i class="fa-solid fa-pen-to-square"></i><span>แก้ไข</span></button>
+                        <button class="queue-btn" type="button" data-action="delete" data-id="${item.id}"><i class="fa-solid fa-trash"></i><span>ลบ</span></button>
+                    </div></td>
+                `;
+                queueTableBody.appendChild(row);
+            });
+
+            updateQueueAdminUI();
+        }
+
+        function clearQueueForm() {
+            editingId = null;
+            queueId.value = '';
+            queueCreatedAt.value = '';
+            queueDueAt.value = '';
+            titlePicker.clear();
+            queuePrice.value = '';
+            queueDetails.value = '';
+            setQueueStatus('รอคิว');
+            queueNote.value = '';
+        }
+
+        function setQueueStatus(status) {
+            queueStatus.value = status;
+            queueStatusLabel.textContent = status;
+
+            queueStatusMenu.querySelectorAll('[data-status-option]').forEach((option) => {
+                option.setAttribute('aria-selected', option.dataset.statusOption === status ? 'true' : 'false');
+            });
+        }
+
+        function toggleQueueStatusMenu(forceOpen) {
+            const willOpen = typeof forceOpen === 'boolean' ? forceOpen : queueStatusMenu.hidden;
+            queueStatusMenu.hidden = !willOpen;
+            queueStatusButton.classList.toggle('is-open', willOpen);
+            queueStatusButton.setAttribute('aria-expanded', String(willOpen));
+        }
+
+        function openQueueForm() {
+            queueForm.hidden = false;
+            queueForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function openUnlockModal() {
+            queueUnlockModal.hidden = false;
+            queueAdminPassword.value = '';
+            setPasswordVisibility(false);
+            queueAdminPassword.focus();
+        }
+
+        function closeUnlockModal() {
+            queueUnlockModal.hidden = true;
+            setPasswordVisibility(false);
+        }
+
+        function setPasswordVisibility(isVisible) {
+            queueAdminPassword.type = isVisible ? 'text' : 'password';
+            queueAdminPasswordToggle.setAttribute('aria-pressed', String(isVisible));
+            queueAdminPasswordToggle.setAttribute('aria-label', isVisible ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน');
+            queueAdminPasswordToggle.innerHTML = isVisible
+                ? '<i class="fa-regular fa-eye-slash"></i>'
+                : '<i class="fa-regular fa-eye"></i>';
+        }
+
+        function openDeleteModal(item) {
+            pendingDeleteId = item.id;
+            queueDeleteMessage.textContent = `จะลบ ${item.title || 'รายการนี้'} ออกจากตารางใช่ไหม`;
+            queueDeleteModal.hidden = false;
+        }
+
+        function closeDeleteModal() {
+            pendingDeleteId = null;
+            queueDeleteModal.hidden = true;
+        }
+
+        function fillForm(item) {
+            editingId = item.id;
+            queueId.value = item.id;
+            queueCreatedAt.value = normalizeQueueNumericValue(item.createdAt) ?? '';
+            queueDueAt.value = normalizeAmountValue(item.dueAt);
+            titlePicker.setDate(item.title ?? '', true, 'Y-m-d');
+            queuePrice.value = normalizeAmountValue(item.price);
+            queueDetails.value = item.details ?? '';
+            setQueueStatus(item.status || 'รอคิว');
+            queueNote.value = item.note || '';
+            queueForm.hidden = false;
+            openQueueForm();
+        }
+
+        function startQueueListener() {
+            const firestore = ensureFirestore();
+
+            if (!firestore) {
+                queueItems = [];
+                renderQueue();
+                return;
+            }
+
+            if (queueUnsubscribe) {
+                queueUnsubscribe();
+            }
+
+            queueUnsubscribe = onSnapshot(collection(firestore, queueCollectionName), (snapshot) => {
+                queueItems = snapshot.docs.map((entry) => normalizeQueueItem({ id: entry.id, ...entry.data() }));
+                renderQueue();
+            }, (error) => {
+                console.error('Failed to read queue data', error);
+                queueItems = [];
+                renderQueue();
+            });
+        }
+
+        queueAdminToggle.addEventListener('click', () => {
+            if (isAdminUnlocked()) {
+                sessionStorage.removeItem(queueAdminKey);
+                clearQueueForm();
+                renderQueue();
+                return;
+            }
+
+            openUnlockModal();
+        });
+
+        queueUnlockForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            if (queueAdminPassword.value.trim() !== queuePassword) {
+                queueAdminPassword.value = '';
+                queueAdminPassword.focus();
+                return;
+            }
+
+            sessionStorage.setItem(queueAdminKey, 'true');
+            closeUnlockModal();
+            clearQueueForm();
+            renderQueue();
+            queueForm.hidden = true;
+        });
+
+        queueUnlockCancel.addEventListener('click', closeUnlockModal);
+
+        queueAdminPasswordToggle.addEventListener('click', () => {
+            setPasswordVisibility(queueAdminPassword.type !== 'text');
+            queueAdminPassword.focus();
+        });
+
+        queueFab.addEventListener('click', () => {
+            if (!isAdminUnlocked()) {
+                openUnlockModal();
+                return;
+            }
+
+            clearQueueForm();
+            openQueueForm();
+        });
+
+        queueResetBtn.addEventListener('click', clearQueueForm);
+        queueSearch.addEventListener('input', renderQueue);
+
+        queueStatusButton.addEventListener('click', () => {
+            toggleQueueStatusMenu();
+        });
+
+        queueStatusMenu.addEventListener('click', (event) => {
+            const option = event.target.closest('[data-status-option]');
+            if (!option) {
+                return;
+            }
+
+            setQueueStatus(option.dataset.statusOption);
+            toggleQueueStatusMenu(false);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!queueStatusMenu.hidden && !event.target.closest('.queue-status-picker')) {
+                toggleQueueStatusMenu(false);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                toggleQueueStatusMenu(false);
+            }
+        });
+
+        queueTableBody.addEventListener('click', (event) => {
+            const button = event.target.closest('button[data-action]');
+            if (!button) return;
+
+            if (!isAdminUnlocked()) {
+                openUnlockModal();
+                return;
+            }
+
+            const itemId = button.dataset.id;
+            const item = queueItems.find((entry) => entry.id === itemId);
+            if (!item) return;
+
+            if (button.dataset.action === 'edit') {
+                fillForm(item);
+                return;
+            }
+
+            if (button.dataset.action === 'delete') {
+                openDeleteModal(item);
+            }
+        });
+
+        queueDeleteConfirm.addEventListener('click', async () => {
+            if (!pendingDeleteId) {
+                closeDeleteModal();
+                return;
+            }
+
+            const firestore = ensureFirestore();
+            if (!firestore) {
+                closeDeleteModal();
+                return;
+            }
+
+            try {
+                await deleteDoc(doc(firestore, queueCollectionName, pendingDeleteId));
+            } catch (error) {
+                console.error('Failed to delete queue item', error);
+            }
+
+            closeDeleteModal();
+        });
+
+        queueDeleteCancel.addEventListener('click', closeDeleteModal);
+
+        queueForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (!isAdminUnlocked()) {
+                openUnlockModal();
+                return;
+            }
+
+            const firestore = ensureFirestore();
+            if (!firestore) {
+                console.error('Firebase config is not ready.');
+                return;
+            }
+
+            const payload = {
+                createdAt: Number(queueCreatedAt.value),
+                dueAt: normalizeAmountValue(queueDueAt.value),
+                title: queueTitle.value,
+                price: Number(queuePrice.value || 0),
+                details: queueDetails.value.trim(),
+                status: queueStatus.value,
+                note: queueNote.value.trim()
+            };
+
+            try {
+                if (editingId) {
+                    await updateDoc(doc(firestore, queueCollectionName, editingId), payload);
+                } else {
+                    await addDoc(collection(firestore, queueCollectionName), payload);
+                }
+
+                clearQueueForm();
+                queueForm.hidden = true;
+            } catch (error) {
+                console.error('Failed to save queue item', error);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !queueUnlockModal.hidden) {
+                closeUnlockModal();
+            }
+
+            if (event.key === 'Escape' && !queueDeleteModal.hidden) {
+                closeDeleteModal();
+            }
+        });
+
+        startQueueListener();
+        renderProfileContent();
+        updateQueueAdminUI();
+    </script>
+</body>
+</html>
